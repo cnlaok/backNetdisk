@@ -15,7 +15,7 @@ def create_backup():
 
     # 尝试从文件中读取已备份的文件和目录
     try:
-        with open('backup_log.txt', 'r') as f:
+        with open('backup_log.txt', 'r', encoding='utf-8') as f:
             for line in f:
                 backed_up.add(line.strip())
     except FileNotFoundError:
@@ -45,7 +45,7 @@ def create_backup():
 
             dest_file = os.path.join(dest_path, filename)
             try:
-                with open(dest_file, 'w') as f:
+                with open(dest_file, 'w', encoding='utf-8') as f:
                     f.write(' ' * 1024)  # 创建1KB大小的文件
                 # 记录这个文件已经被备份
                 backed_up.add(src_file)
@@ -55,7 +55,7 @@ def create_backup():
                 print(f"创建文件 {dest_file} 时出错: {e}")
 
     # 将已备份的文件和目录写入到文件中
-    with open('backup_log.txt', 'w') as f:
+    with open('backup_log.txt', 'w', encoding='utf-8') as f:
         for item in backed_up:
             f.write(item + '\n')
 
